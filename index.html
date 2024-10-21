@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noteworthy</title>
+    <link rel="stylesheet" href="https://caretparrot.github.io/My-Libraries/dark.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="https://caretparrot.github.io/My-Libraries/Profile%20Picture.png">
+    <script defer src="https://caretparrot.github.io/My-Libraries/gpl.js"></script>
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <div id="home" class="page">
+        <h1>Noteworthy</h1>
+        <div class="normalWrap">
+            <button onclick="changePage('notes', 'page', 'flex')">New</button>
+        </div>
+    </div>
+    <div id="notes" class="page">
+        <button onclick="changePage('home', 'page', 'flex')">Back</button>
+        <ul contenteditable></ul>
+    </div>
+</body>
+</html>

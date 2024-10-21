@@ -1,0 +1,22 @@
+.normalWrap {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+#notes {
+    display: none;
+}
+
+ul, ul * {
+    flex-flow: column wrap;
+    justify-content: flex-start;
+}
+
+.page {
+    flex-flow: column wrap;
+    background-color: transparent;
+}
