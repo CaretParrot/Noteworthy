@@ -6,7 +6,9 @@ document.getElementById("notes").onkeydown = function (event) {
     if (event.key === "Tab") {
         if (shiftDown === true) {
             event.preventDefault();
-            indent--;
+            if (indent > 0) {
+                indent--;
+            }
         } else {
             event.preventDefault();
             indent++;
