@@ -11,15 +11,15 @@
     <script defer src="./script.js"></script>
 </head>
 <body>
-    <div id="home" class="page">
+    <div id="homePage" class="page">
         <h1>Noteworthy</h1>
         <div class="normalWrap">
-            <button onclick="changePage('notes', 'page', 'flex')">New</button>
+            <button onclick="changePage('notesPage', 'page', 'flex')">New</button>
         </div>
     </div>
-    <div id="notes" class="page">
-        <button onclick="changePage('home', 'page', 'flex')">Back</button>
-        <ul contenteditable></ul>
+    <div id="notesPage" class="page">
+        <button onclick="changePage('home', 'homePage', 'flex')">Back</button>
+        <ul contenteditable id="notes"></ul>
     </div>
 </body>
 </html>

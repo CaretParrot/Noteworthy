@@ -1,7 +1,7 @@
 let indent = 0;
 let shiftDown = false;
 
-onkeydown = function (event) {
+document.getElementById("notes").onkeydown = function (event) {
     console.log(document.activeElement);
     if (event.key === "Tab") {
         if (shiftDown === true) {
