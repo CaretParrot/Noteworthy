@@ -70,3 +70,8 @@ ul, ul * {
     flex-flow: column wrap;
     background-color: transparent;
 }
+
+.titleButtons {
+    font-size: 3rem;
+    font-family: "Gabarito", sans-serif;
+}

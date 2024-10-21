@@ -9,6 +9,7 @@ document.getElementById("notes").onkeydown = function (event) {
             if (indent > 0) {
                 indent--;
             }
+            shiftDown = true;
         } else {
             event.preventDefault();
             indent++;
