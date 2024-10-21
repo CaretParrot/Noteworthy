@@ -1,3 +1,53 @@
+@media (prefers-color-scheme: dark) {
+    * {
+        color: hsl(240, 0%, 90%);
+        background-color: hsl(240, 0%, 10%);
+    }
+
+    body {
+        background-color: black;
+    }
+
+    ::-moz-selection {
+        color: hsl(240, 0%, 20%);
+        background: hsl(240, 0%, 80%);
+    }
+
+    ::selection {
+        color: hsl(240, 0%, 20%);
+        background: hsl(240, 0%, 80%);
+    }
+
+    .active {
+        background: hsl(240, 0%, 20%);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    * {
+        color: hsl(240, 10%, 10%);
+        background-color: hsl(240, 0%, 90%);
+    }
+
+    body {
+        background-color: white;
+    }
+
+    ::-moz-selection {
+        color: hsl(240, 0%, 80%);
+        background: hsl(240, 0%, 20%);
+    }
+
+    ::selection {
+        color: hsl(240, 0%, 80%);
+        background: hsl(240, 0%, 20%);
+    }
+
+    .active {
+        background: hsl(240, 0%, 80%);
+    }
+}
+
 .normalWrap {
     margin: 1rem;
     padding: 1rem;
