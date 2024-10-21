@@ -1,10 +1,24 @@
 let indent = 0;
+let shiftDown = false;
 
 onkeydown = function (event) {
     console.log(document.activeElement);
     if (event.key === "Tab") {
-        event.preventDefault();
-        indent++;
+        if (shiftDown === true) {
+            event.preventDefault();
+            indent--;
+        } else {
+            event.preventDefault();
+            indent++;
+        }
         document.activeElement.style.textIndent = `${indent}rem`;
     }
+
+    if (event.key === "Shift") {
+        shiftDown = true;
+    }
+}
+
+onkeyup = function (event) {
+    shiftDown = false;
 }
