@@ -1,7 +1,8 @@
 let currentDoc = "";
 let currentLine = 0;
+let shift = false;
 
-let notes = {}
+let notes = {};
 
 document.getElementById("notes").onkeydown = function (event) {
     if (event.key === "Enter") {
@@ -21,21 +22,42 @@ document.getElementById("notes").onkeydown = function (event) {
         changePage('homePage', 'page', 'flex');
     }
 
-    if (event.key === "Backspace" && document.activeElement.innerHTML === "") {
+    if (event.key === "Backspace" && document.activeElement.value === "" && document.getElementById(currentLine - 1) !== null) {
+        event.preventDefault();
         document.activeElement.remove();
         delete notes[currentDoc][currentLine];
         document.getElementById(currentLine - 1).focus();
+        currentLine = +document.activeElement.id;
     }
 
+    if (event.key === "Shift") {
+        shift = true;
+    }
+
+    if (event.key === "Tab") {
+        event.preventDefault();
+        if (shift === true && notes[currentDoc][currentLine]["indent"] >= 0) {
+            notes[currentDoc][currentLine]["indent"]--;
+            shift = true;
+        } else {
+            notes[currentDoc][currentLine]["indent"]++;
+        }
+    }
+
+    document.activeElement.style.textIndent = `${notes[currentDoc][currentLine]["indent"]}rem`;
     currentLine = +document.activeElement.id;
-    notes[currentDoc][currentLine] = document.activeElement.innerHTML;
+    notes[currentDoc][currentLine]["text"] = document.activeElement.value;
 }
 
 document.getElementById("notes").onmousedown = function (event) {
-    notes[currentDoc][currentLine] = document.activeElement.innerHTML;
     if (+document.activeElement.id !== 0) {
         currentLine = +document.activeElement.id;
     }
+    notes[currentDoc][currentLine]["text"] = document.activeElement.value;
+}
+
+onkeyup = function (event) {
+    shift = false;
 }
 
 function promptAndOpenNotes() {
@@ -45,7 +67,10 @@ function promptAndOpenNotes() {
         return;
     } else {
         if (document.getElementById("notes").innerHTML === "") {
-            notes[name] = { "lineCount": 0 };
+            notes[name] = {
+                data: [],
+                lineCount: 0
+            };
             currentDoc = name;
             addNewLine();
         }
@@ -58,8 +83,11 @@ function promptAndOpenNotes() {
 function addNewLine() {
     notes[currentDoc]["lineCount"]++;
     currentLine++;
-    notes[currentDoc][currentLine] = "";
-    createElement("li", "", notes[currentDoc]["lineCount"], document.getElementById("notes"));
-    document.getElementById(notes[currentDoc]["lineCount"]).contentEditable = true;
+    notes[currentDoc]["data"][currentLine] = {
+        "text": "- ",
+        "indent": 0
+    }
+    createElement("input", "", notes[currentDoc]["lineCount"], document.getElementById("notes"));
+    document.getElementById(notes[currentDoc]["lineCount"]).value = "- ";
     document.getElementById(notes[currentDoc]["lineCount"]).focus();
 }

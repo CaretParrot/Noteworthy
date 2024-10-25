@@ -57,6 +57,15 @@ h1 {
     margin-bottom: 2rem;
 }
 
+div {
+    flex-flow: column wrap;
+}
+
+input {
+    margin: 0;
+    padding: 0.25rem;
+}
+
 #notesPage {
     display: none;
 }
@@ -64,11 +73,6 @@ h1 {
 ul, ul * {
     flex-flow: column wrap;
     justify-content: flex-start;
-}
-
-li {
-    padding: 0.25rem;
-    margin: 0.25rem;
 }
 
 .page {
