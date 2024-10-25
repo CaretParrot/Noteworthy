@@ -1,10 +1,50 @@
 let currentDoc = "";
 let currentLine = 0;
 let shift = false;
+let allNotesDocs = document.getElementsByClassName("notesDoc");
 
-let notes = {};
+for (let i = 0; i < allNotesDocs.length; i++) {
+    document.getElementById("notes").onkeydown = function (event) {
+        registerKeys(event);
+    }
+}
 
-document.getElementById("notes").onkeydown = function (event) {
+document.getElementById("notes").onmousedown = function (event) {
+    if (+document.activeElement.id !== 0) {
+        currentLine = +document.activeElement.id;
+    }
+}
+
+onkeyup = function (event) {
+    shift = false;
+}
+
+function promptAndOpenNotes() {
+    let name;
+    name = prompt("Name:");
+    if (name === null) {
+        return;
+    } else {
+        createElement("div", "", name, document.getElementById("notesPage"));
+        document.getElementById(name).dataset.lineCount = 0;
+        document.getElementById(name).classList.add("notesDoc");
+        addNewLine(name);
+        allNotesDocs = document.getElementsByClassName("notesDoc");
+        changePage('notesPage', 'page', 'flex');
+        for (let i = 0; i < allNotesDocs.length; i++) {
+            document.getElementById("notesPage").onkeydown = function (event) {
+                registerKeys(event);
+            }
+        }
+    }
+
+}
+
+function addNewLine(divId) {
+    createElement("input", "", document.getElementById(divId).dataset.lineCount, document.getElementById(divId));
+}
+
+function registerKeys(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         addNewLine();
@@ -25,7 +65,6 @@ document.getElementById("notes").onkeydown = function (event) {
     if (event.key === "Backspace" && document.activeElement.value === "" && document.getElementById(currentLine - 1) !== null) {
         event.preventDefault();
         document.activeElement.remove();
-        delete notes[currentDoc][currentLine];
         document.getElementById(currentLine - 1).focus();
         currentLine = +document.activeElement.id;
     }
@@ -34,60 +73,5 @@ document.getElementById("notes").onkeydown = function (event) {
         shift = true;
     }
 
-    if (event.key === "Tab") {
-        event.preventDefault();
-        if (shift === true && notes[currentDoc][currentLine]["indent"] >= 0) {
-            notes[currentDoc][currentLine]["indent"]--;
-            shift = true;
-        } else {
-            notes[currentDoc][currentLine]["indent"]++;
-        }
-    }
-
-    document.activeElement.style.textIndent = `${notes[currentDoc][currentLine]["indent"]}rem`;
     currentLine = +document.activeElement.id;
-    notes[currentDoc][currentLine]["text"] = document.activeElement.value;
-}
-
-document.getElementById("notes").onmousedown = function (event) {
-    if (+document.activeElement.id !== 0) {
-        currentLine = +document.activeElement.id;
-    }
-    notes[currentDoc][currentLine]["text"] = document.activeElement.value;
-}
-
-onkeyup = function (event) {
-    shift = false;
-}
-
-function promptAndOpenNotes() {
-    let name;
-    name = prompt("Name:");
-    if (name === null) {
-        return;
-    } else {
-        if (document.getElementById("notes").innerHTML === "") {
-            notes[name] = {
-                data: [],
-                lineCount: 0
-            };
-            currentDoc = name;
-            addNewLine();
-        }
-        document.getElementById("notesName").innerHTML = currentDoc;
-        changePage('notesPage', 'page', 'flex');
-    }
-    
-}
-
-function addNewLine() {
-    notes[currentDoc]["lineCount"]++;
-    currentLine++;
-    notes[currentDoc]["data"][currentLine] = {
-        "text": "- ",
-        "indent": 0
-    }
-    createElement("input", "", notes[currentDoc]["lineCount"], document.getElementById("notes"));
-    document.getElementById(notes[currentDoc]["lineCount"]).value = "- ";
-    document.getElementById(notes[currentDoc]["lineCount"]).focus();
 }
