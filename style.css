@@ -66,6 +66,11 @@ ul, ul * {
     justify-content: flex-start;
 }
 
+li {
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
 .page {
     flex-flow: column wrap;
     background-color: transparent;
@@ -74,4 +79,8 @@ ul, ul * {
 .titleButtons {
     font-size: 3rem;
     font-family: "Gabarito", sans-serif;
+}
+
+#notesPage {
+    background-color: transparent;
 }
