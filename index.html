@@ -12,12 +12,14 @@
     <script defer src="./script.js"></script>
 </head>
 <body>
-    <div id="homePage" class="page">
+    <div id="homePage" class="page normalWrap">
         <h1>Noteworthy</h1>
-        <div class="normalWrap">
+        <div>
             <button class="titleButtons" onclick="promptAndOpenNotes()">+</button>
         </div>
     </div>
-    <div id="notesPage" class="page"></div>
+    <div id="notesPage" class="page normalWrap">
+        <h1 id="notesName"></h1>
+    </div>
 </body>
 </html>

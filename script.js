@@ -25,12 +25,15 @@ function promptAndOpenNotes() {
     if (name === null) {
         return;
     } else {
-        createElement("div", "", name, document.getElementById("notesPage"));
-        document.getElementById(name).dataset.lineCount = 0;
-        document.getElementById(name).classList.add("notesDoc");
-        addNewLine(name);
-        allNotesDocs = document.getElementsByClassName("notesDoc");
+        currentDoc = name;
+        createElement("div", "", currentDoc, document.getElementById("notesPage"));
+        document.getElementById(currentDoc).dataset.lineCount = 0;
+        currentLine = document.getElementById(currentDoc).dataset.lineCount;
+        document.getElementById(currentDoc).classList.add("notesDoc");
+        document.getElementById("notesName").innerHTML = currentDoc;
+        addNewLine(currentDoc);
         changePage('notesPage', 'page', 'flex');
+        allNotesDocs = document.getElementsByClassName("notesDoc");
         for (let i = 0; i < allNotesDocs.length; i++) {
             document.getElementById("notesPage").onkeydown = function (event) {
                 registerKeys(event);
@@ -41,13 +44,16 @@ function promptAndOpenNotes() {
 }
 
 function addNewLine(divId) {
+    document.getElementById(currentDoc).dataset.lineCount++;
     createElement("input", "", document.getElementById(divId).dataset.lineCount, document.getElementById(divId));
+    currentLine = document.getElementById(currentDoc).dataset.lineCount;
+    document.getElementById(currentLine).focus();
 }
 
 function registerKeys(event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        addNewLine();
+        addNewLine(currentDoc);
     }
 
     if (event.key === "ArrowUp" && currentLine >= 2) {
