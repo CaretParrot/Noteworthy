@@ -1,6 +1,7 @@
 let currentDoc = "";
 let currentLine = 0;
 let shift = false;
+let control = false;
 let allNotesDocs = document.getElementsByClassName("notesDoc");
 
 for (let i = 0; i < allNotesDocs.length; i++) {
@@ -9,14 +10,9 @@ for (let i = 0; i < allNotesDocs.length; i++) {
     }
 }
 
-document.getElementById("notes").onmousedown = function (event) {
-    if (+document.activeElement.id !== 0) {
-        currentLine = +document.activeElement.id;
-    }
-}
-
 onkeyup = function (event) {
     shift = false;
+    control = false;
 }
 
 function promptAndOpenNotes() {
@@ -27,6 +23,7 @@ function promptAndOpenNotes() {
     } else {
         currentDoc = name;
         createElement("div", "", currentDoc, document.getElementById("notesPage"));
+        document.getElementById(currentDoc).contentEditable = true;
         document.getElementById(currentDoc).dataset.lineCount = 0;
         currentLine = document.getElementById(currentDoc).dataset.lineCount;
         document.getElementById(currentDoc).classList.add("notesDoc");
@@ -45,9 +42,7 @@ function promptAndOpenNotes() {
 
 function addNewLine(divId) {
     document.getElementById(currentDoc).dataset.lineCount++;
-    createElement("input", "", document.getElementById(divId).dataset.lineCount, document.getElementById(divId));
     currentLine = document.getElementById(currentDoc).dataset.lineCount;
-    document.getElementById(currentLine).focus();
 }
 
 function registerKeys(event) {
@@ -79,5 +74,7 @@ function registerKeys(event) {
         shift = true;
     }
 
-    currentLine = +document.activeElement.id;
+    if (event.key === "Control") {
+        control = true;
+    }
 }
