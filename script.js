@@ -16,8 +16,7 @@ onkeyup = function (event) {
 }
 
 function promptAndOpenNotes() {
-    let name;
-    name = prompt("Name:");
+    let name = prompt("Name:");
     if (name === null) {
         return;
     } else {
@@ -47,7 +46,6 @@ function addNewLine(divId) {
 
 function registerKeys(event) {
     if (event.key === "Enter") {
-        event.preventDefault();
         addNewLine(currentDoc);
     }
 
