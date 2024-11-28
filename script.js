@@ -26,6 +26,7 @@ function promptAndOpenNotes() {
         document.getElementById(currentDoc).dataset.lineCount = 0;
         currentLine = document.getElementById(currentDoc).dataset.lineCount;
         document.getElementById(currentDoc).classList.add("notesDoc");
+        document.getElementById(currentDoc).focus();
         document.getElementById("notesName").innerHTML = currentDoc;
         addNewLine(currentDoc);
         changePage('notesPage', 'page', 'flex');
@@ -41,6 +42,7 @@ function promptAndOpenNotes() {
 
 function addNewLine(divId) {
     document.getElementById(currentDoc).dataset.lineCount++;
+    document.getElementById(currentDoc).dataset.indent = 0;
     currentLine = document.getElementById(currentDoc).dataset.lineCount;
 }
 

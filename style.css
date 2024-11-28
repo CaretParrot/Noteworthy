@@ -1,57 +1,3 @@
-@media (prefers-color-scheme: dark) {
-    * {
-        color: hsl(240, 0%, 90%);
-        background-color: hsl(240, 0%, 10%);
-    }
-
-    body {
-        background-color: black;
-    }
-
-    ::-moz-selection {
-        color: hsl(240, 0%, 20%);
-        background: hsl(240, 0%, 80%);
-    }
-
-    ::selection {
-        color: hsl(240, 0%, 20%);
-        background: hsl(240, 0%, 80%);
-    }
-
-    .active {
-        background: hsl(240, 0%, 20%);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    * {
-        color: hsl(240, 10%, 10%);
-        background-color: hsl(240, 0%, 90%);
-    }
-
-    body {
-        background-color: white;
-    }
-
-    ::-moz-selection {
-        color: hsl(240, 0%, 80%);
-        background: hsl(240, 0%, 20%);
-    }
-
-    ::selection {
-        color: hsl(240, 0%, 80%);
-        background: hsl(240, 0%, 20%);
-    }
-
-    .active {
-        background: hsl(240, 0%, 80%);
-    }
-}
-
-h1 {
-    margin-bottom: 2rem;
-}
-
 div {
     flex-flow: column wrap;
     margin: 1rem;
@@ -68,9 +14,13 @@ input {
     display: none;
 }
 
-ul, ul * {
-    flex-flow: column wrap;
-    justify-content: flex-start;
+.notesDoc, .notesDoc div {
+    list-style-type: none;
+}
+
+.notesDoc div {
+    padding: 0;
+    margin: 0;
 }
 
 .page {
