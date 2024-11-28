@@ -14,10 +14,6 @@ input {
     display: none;
 }
 
-.notesDoc, .notesDoc div {
-    list-style-type: none;
-}
-
 .notesDoc div {
     padding: 0;
     margin: 0;

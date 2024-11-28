@@ -51,14 +51,6 @@ function registerKeys(event) {
         addNewLine(currentDoc);
     }
 
-    if (event.key === "ArrowUp" && currentLine >= 2) {
-        document.getElementById(currentLine - 1).focus();
-    }
-
-    if (event.key === "ArrowDown") {
-        document.getElementById(currentLine + 1).focus();
-    }
-
     if (event.key === "Escape") {
         changePage('homePage', 'page', 'flex');
     }
@@ -77,4 +69,17 @@ function registerKeys(event) {
     if (event.key === "Control") {
         control = true;
     }
+
+    if (control && event.key === "e") {
+        exportNotes();
+    }
+}
+
+function exportNotes() {
+    let exportedText = document.getElementById(currentDoc).innerHTML.replace(/<div>/g, "\n").replace(/<\/div>/g, "");
+    createElement("a", "", "link", document.body);
+    document.getElementById("link").href = URL.createObjectURL(new Blob([exportedText], { type: "text/rtf" }));
+    document.getElementById("link").download = `${currentDoc}.rtf`;
+    document.getElementById("link").click();
+    console.log(exportedText);
 }
