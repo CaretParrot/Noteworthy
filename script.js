@@ -4,6 +4,7 @@ let shift = false;
 let control = false;
 let allNotesDocs = document.getElementsByClassName("notesDoc");
 
+
 for (let i = 0; i < allNotesDocs.length; i++) {
     document.getElementById("notes").onkeydown = function (event) {
         registerKeys(event);
@@ -67,7 +68,6 @@ function exportNotes() {
     document.getElementById("link").href = URL.createObjectURL(new Blob([exportedText], { type: "text/rtf" }));
     document.getElementById("link").download = `${currentDoc}.rtf`;
     document.getElementById("link").click();
-    console.log(exportedText);
 }
 
 function commandSelection() {

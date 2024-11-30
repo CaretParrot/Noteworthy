@@ -30,9 +30,14 @@ textarea {
     display: none;
 }
 
-.notesDoc div {
+.notesDoc span {
     padding: 0;
     margin: 0;
+    display: flex;
+}
+
+.indent {
+    display: inline-block; 
 }
 
 .page {
