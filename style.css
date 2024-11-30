@@ -1,3 +1,13 @@
+:root {
+    color-scheme: light dark;
+    --dark-1: hsl(240, 0%, 8%);
+    --dark-2: hsl(240, 0%, 16%);
+    --dark-3: hsl(240, 0%, 24%);
+    --light-1: hsl(240, 0%, 92%);
+    --light-2: hsl(240, 0%, 84%);
+    --light-3: hsl(240, 0%, 76%);
+}
+
 div {
     flex-flow: column wrap;
     margin: 1rem;
@@ -8,6 +18,12 @@ div {
 input {
     margin: 0;
     padding: 0.25rem;
+}
+
+textarea {
+    max-width: calc(100% - 2rem);
+    min-width: calc(100% - 2rem);
+    transition: 0s;
 }
 
 #notesPage {
@@ -34,4 +50,8 @@ input {
 
 #notesPage {
     background-color: transparent;
+}
+
+span {
+    justify-content: flex-start;
 }
